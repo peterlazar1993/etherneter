@@ -16,7 +16,7 @@ BUF_SIZE = 1600		# > 1500
 ETH_P_ALL = 3		# To receive all Ethernet protocols
 
 # Interface = "eth0"
-Interface = "enp0s3"
+Interface = "eth0"
 
 host = socket.gethostbyname(socket.gethostname())
 
