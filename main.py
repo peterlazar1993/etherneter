@@ -11,6 +11,8 @@ from pypacker.layer3 import ip, icmp
 from pypacker.layer4 import udp, tcp
 
 
+print("Test")
+
 BUF_SIZE = 1600		# > 1500
 
 ETH_P_ALL = 3		# To receive all Ethernet protocols
