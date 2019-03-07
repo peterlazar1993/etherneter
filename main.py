@@ -18,7 +18,7 @@ BUF_SIZE = 1600		# > 1500
 ETH_P_ALL = 3		# To receive all Ethernet protocols
 
 # Interface = "eth0"
-Interface = "eth0"
+Interface = "wlan0"
 
 host = socket.gethostbyname(socket.gethostname())
 
