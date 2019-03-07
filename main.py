@@ -27,8 +27,9 @@ host = socket.gethostbyname(socket.gethostname())
 
 def printPacket(packet, now, message):
     newPacket = ethernet.Ethernet(packet)
-    print('---------------')
-    print(newPacket)
+    if newPacket.dst_s != '<current device MAC in capitals>' or newPacket.dst_s != 'FF:FF:FF:FF:FF:FF':
+        print('---------------')
+        print(newPacket)
     # print(message, len(packet), "bytes  time:", now,
     #       "\n  SMAC:", SMAC(packet), " DMAC:", DMAC(packet),
     #       " Type:", EtherType(packet), "\n  Payload:", Payload(packet))  # !! Python 3 !!
