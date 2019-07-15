@@ -7,7 +7,7 @@ from pypacker.layer12 import ethernet
 from pypacker.layer3 import ip, icmp
 
 ser = serial.Serial(
-    port='/dev/pts/1',
+    port='/dev/ttyS0',
     baudrate=9600
 )
 

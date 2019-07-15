@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "hndl",
+        "icmp",
+        "iface",
+        "name",
+        "psock",
+        "socket",
+        "wlan"
+    ],
+    "python.pythonPath": "env/bin/python3"
+}

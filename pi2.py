@@ -6,10 +6,10 @@ from pypacker import psocket
 from pypacker.layer12 import ethernet
 from pypacker.layer3 import ip, icmp
 
-Interface = "enp0s3"
+Interface = "wlan0"
 
 ser = serial.Serial(
-    port='/dev/pts/2',
+    port='/dev/ttyS0',
     baudrate=9600,
 )
 
