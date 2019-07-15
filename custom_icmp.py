@@ -9,7 +9,7 @@ from pypacker.layer3 import ip, icmp
 from pypacker.layer4 import udp, tcp
 
 
-Interface = "enp0s3"
+Interface = "wlan0"
 
 try:
     psock = psocket.SocketHndl(iface_name=Interface, timeout=10)
@@ -18,6 +18,8 @@ try:
         icmp.ICMP(type=8) +\
         icmp.ICMP.Echo(id=1, ts=123456789, body_bytes=b"12345678901234567890")
     psock.send(icmpreq.bin())
+
+    print(icmpreq)
 
 except socket.timeout as e:
     print("timeout!")
