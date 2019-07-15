@@ -1,2 +1,0 @@
-pypacker==4.7
-pyserial==3.4
