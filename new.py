@@ -9,7 +9,7 @@ from pypacker import psocket
 from pypacker.layer12 import ethernet
 from pypacker.layer3 import ip, icmp
 
-Interface = "wlan0"
+Interface = "eth0"
 
 
 class Etherneter:
