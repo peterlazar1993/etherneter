@@ -69,8 +69,8 @@ class Etherneter:
 if __name__ == '__main__':
 
     ser = serial.Serial()
-    ser.baudrate = 9600
-    ser.port = '/dev/ttyS0'
+    ser.baudrate = 115200
+    ser.port = '/dev/ttyAMA0'
 
     psock = None
 
