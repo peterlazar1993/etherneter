@@ -50,7 +50,6 @@ class Etherneter:
         while self.alive:
             try:
                 data = self.socket.recv()
-                print(ethernet.Ethernet(data))
                 if not data:
                     break
                 self.serial.write(data+b'\n')
