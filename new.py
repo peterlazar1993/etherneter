@@ -61,9 +61,9 @@ class Etherneter:
     def stop(self):
         """Stop copying"""
         if self.alive:
-            self.alive = False
             self.thread_read.join()
             self.thread_write.join()
+            self.alive = False
 
 
 if __name__ == '__main__':
