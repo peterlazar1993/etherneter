@@ -6,10 +6,10 @@ import threading
 
 import pypacker.pypacker as pypacker
 from pypacker import psocket
-from pypacker.layer12 import ethernet
+from pypacker.layer12 import arp, ethernet
 from pypacker.layer3 import ip, icmp
 
-Interface = "eth0"
+Interface = "wlan0"
 
 
 class Etherneter:
@@ -33,9 +33,21 @@ class Etherneter:
         """loop forever and copy serial->socket"""
         while self.alive:
             try:
-                data = self.serial.read_until(b'\n')[:-1]
+                data = self.serial.read_until(b'~')
                 if data:
-                    self.write(data)
+                    try:
+                        packet = ethernet.Ethernet(data)
+                        data = data[:-1]
+                        if packet[icmp.ICMP]:
+                            packet[ethernet.Ethernet].src_s = "dc:a6:32:00:af:5c"
+                            packet[ethernet.Ethernet].dst_s = "ec:84:b4:3e:c8:20"
+                            packet[ip.IP].src_s = "192.168.1.63"
+                            packet[icmp.ICMP].sum = b'0x9182'
+                            print('___________________PACKET FROM OPTICAL LINK___________________')
+                            print(packet)
+                            self.write(packet.bin())
+                    except:
+                        continue
             except socket.error as msg:
                 break
         self.alive = False
@@ -52,7 +64,13 @@ class Etherneter:
                 data = self.socket.recv()
                 if not data:
                     break
-                self.serial.write(data+b'\n')
+                packet = ethernet.Ethernet(data)
+                if packet[arp.ARP]:
+                    continue
+                if packet[icmp.ICMP]:
+                    print('\n\n___________________RESPONSE FROM GOOGLE SERVER___________________')
+                    print(packet)
+                    self.serial.write(data+b'~')
             except socket.error as msg:
                 # probably got disconnected
                 break
@@ -69,8 +87,8 @@ class Etherneter:
 if __name__ == '__main__':
 
     ser = serial.Serial()
-    ser.baudrate = 115200
-    ser.port = '/dev/ttyAMA0'
+    ser.baudrate = 9600
+    ser.port = '/dev/serial0'
 
     psock = None
 

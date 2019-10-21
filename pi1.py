@@ -7,8 +7,8 @@ from pypacker.layer12 import ethernet
 from pypacker.layer3 import ip, icmp
 
 ser = serial.Serial(
-    port = '/dev/ttyAMA0',
-    baudrate = 115200
+    port='/dev/serial0',
+    baudrate=115200
 )
 
 print('Enter your commands below.\r\nInsert "exit" to leave the application.')
